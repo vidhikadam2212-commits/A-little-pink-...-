@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Surprise for Cutu 💗</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Trebuchet MS",Arial,sans-serif;background:linear-gradient(135deg,#ffe4ef,#fff0f6 55%,#fce1ff);color:#8d4264;display:grid;place-items:center;padding:18px;overflow-x:hidden}
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.heart{position:absolute;bottom:-30px;font-size:20px;opacity:.5;animation:float 9s linear infinite}
+@keyframes float{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.card{position:relative;width:min(100%,490px);background:#ffffffeb;border:2px solid #ffd0e2;border-radius:28px;padding:28px 22px;box-shadow:0 16px 45px #d98caf35;text-align:center}
+.tag{display:inline-block;background:#ffe1ed;padding:8px 14px;border-radius:30px;font-size:13px;color:#b6537e}
+h1{font-size:clamp(27px,7vw,36px);margin:17px 0 10px;color:#cf5f8d}
+p{font-size:16px;line-height:1.6;color:#87536a}
+.art{font-size:55px;margin:10px 0}
+button{border:0;border-radius:28px;padding:12px 18px;font-size:15px;font-weight:700;cursor:pointer;margin:7px;transition:transform .15s}
+button:active{transform:scale(.97)}
+.primary{background:#ed83ad;color:white;box-shadow:0 5px 14px #e58caf55}
+.secondary{background:#ffe2ed;color:#b6537e}
+.option{display:block;width:100%;margin:9px auto;background:#fff0f6;color:#a64e75;border:1px solid #ffd0e2;text-align:left;padding:13px 16px}
+.option:hover{background:#ffe1ed}
+.hidden{display:none}
+.note{background:#fff0f6;border:1px dashed #ef9cbb;border-radius:18px;padding:14px;margin:16px 0}
+.small{font-size:12px;color:#b27b93;margin-top:18px}
+.progress{height:6px;background:#ffe3ee;border-radius:20px;margin:18px 0 8px;overflow:hidden}
+.bar{height:100%;width:0;background:#e879a4;border-radius:20px;transition:width .3s}
+.feedback{min-height:22px;font-size:13px;color:#bb6288}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+<main class="card">
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<section id="page1">
+<span class="tag">A tiny surprise for you 🎀</span>
+<div class="art">💌🌷</div>
+<h1>Hey, Cutu!</h1>
+<p>I made a little something for you.<br>It's a few cute questions… and one important question at the end. Ready? 💗</p>
+<button class="primary" onclick="showPage(2)">Let's begin ✨</button>
+</section>
+
+<section id="page2" class="hidden">
+<span class="tag">Question 1 of 5 🌸</span><div class="art">🍫</div>
+<h1>What's your ideal treat?</h1>
+<p>Pick the one you'd choose right now!</p>
+<button class="option" onclick="answer(2,'Chocolate 🍫')">🍫 Chocolate</button>
+<button class="option" onclick="answer(2,'Ice cream 🍦')">🍦 Ice cream</button>
+<button class="option" onclick="answer(2,'Flowers 🌷')">🌷 Flowers</button>
+<button class="option" onclick="answer(2,'A surprise gift 🎁')">🎁 A surprise gift</button>
+<div class="feedback" id="feedback2"></div>
+<button class="primary" onclick="showPage(3)">Next question 💕</button>
+</section>
+
+<section id="page3" class="hidden">
+<span class="tag">Question 2 of 5 🦋</span><div class="art">🌅</div>
+<h1>Choose our cute date!</h1>
+<p>Which sounds the most fun?</p>
+<button class="option" onclick="answer(3,'A sunset walk 🌇')">🌇 A sunset walk</button>
+<button class="option" onclick="answer(3,'Cafe and conversations ☕')">☕ Cafe and conversations</button>
+<button class="option" onclick="answer(3,'A movie date 🎬')">🎬 A movie date</button>
+<button class="option" onclick="answer(3,'A fun little adventure 🎡')">🎡 A fun little adventure</button>
+<div class="feedback" id="feedback3"></div>
+<button class="primary" onclick="showPage(4)">Next question 💗</button>
+</section>
+
+<section id="page4" class="hidden">
+<span class="tag">Question 3 of 5 💌</span><div class="art">😊</div>
+<h1>What makes you smile most?</h1>
+<p>Choose whichever feels right.</p>
+<button class="option" onclick="answer(4,'Funny conversations 😂')">😂 Funny conversations</button>
+<button class="option" onclick="answer(4,'Thoughtful little gestures 🌷')">🌷 Thoughtful little gestures</button>
+<button class="option" onclick="answer(4,'Quality time together 🫶')">🫶 Quality time together</button>
+<button class="option" onclick="answer(4,'Random sweet messages 💬')">💬 Random sweet messages</button>
+<div class="feedback" id="feedback4"></div>
+<button class="primary" onclick="showPage(5)">Next question 🥹</button>
+</section>
+
+<section id="page5" class="hidden">
+<span class="tag">Question 4 of 5 🎀</span><div class="art">🎶</div>
+<h1>Pick the perfect vibe!</h1>
+<p>What would you enjoy most?</p>
+<button class="option" onclick="answer(5,'Soft romantic songs 🎧')">🎧 Soft romantic songs</button>
+<button class="option" onclick="answer(5,'Dancing and being silly 💃')">💃 Dancing and being silly</button>
+<button class="option" onclick="answer(5,'Long talks under the stars ✨')">✨ Long talks under the stars</button>
+<button class="option" onclick="answer(5,'A peaceful day together 🌼')">🌼 A peaceful day together</button>
+<div class="feedback" id="feedback5"></div>
+<button class="primary" onclick="showPage(6)">One last question… 💞</button>
+</section>
+
+<section id="page6" class="hidden">
+<span class="tag">Question 5 of 5 🤍</span><div class="art">🫶</div>
+<h1>Can I ask you something?</h1>
+<p>I really enjoy talking to you and getting to know you. Would you be comfortable going on a cute date with me sometime?</p>
+<button class="primary" onclick="showPage(7)">Yes, that sounds lovely! 🌷</button>
+<button class="secondary" onclick="showPage(8)">Maybe, let's talk 😊</button>
+<button class="secondary" onclick="showPage(9)">I'd rather not, thank you 🤍</button>
+</section>
+
+<section id="page7" class="hidden">
+<div class="art">🌸🥰🌸</div><h1>Yay! A date! 💗</h1>
+<p>Now for the question I've been wanting to ask…</p>
+<button class="primary" onclick="showPage(10)">Open the final question 💌</button>
+</section>
+
+<section id="page8" class="hidden">
+<div class="art">🌷🤍</div><h1>Of course!</h1>
+<p>No rush at all. I'd be happy to talk and see what feels right for both of us.</p>
+<button class="primary" onclick="showPage(10)">Continue 💌</button>
+</section>
+
+<section id="page9" class="hidden">
+<div class="art">🤍🌼</div><h1>Thank you for being honest</h1>
+<p>That's completely okay, Cutu. I respect your feelings. Thank you for taking the time to read my little surprise.</p>
+<button class="secondary" onclick="showPage(1)">Back to the beginning</button>
+</section>
+
+<section id="page10" class="hidden">
+<span class="tag">The special question 💗</span><div class="art">🥹🌹</div>
+<h1>Will you be my girlfriend?</h1>
+<p>I don't expect a perfect answer or a perfect relationship. I just want to be honest about how I feel and see if we could make something lovely together. No pressure — your feelings matter. 💕</p>
+<button class="primary" onclick="showPage(11)">Yes! 💖</button>
+<button class="secondary" onclick="showPage(12)">I need time 🌷</button>
+<button class="secondary" onclick="showPage(13)">I don't feel the same 🤍</button>
+</section>
+
+<section id="page11" class="hidden">
+<div class="art">🥰💐💗</div><h1>You made my day!</h1>
+<p>Thank you for making this moment so special, Cutu. Here's to getting to know each other and making lovely memories. ✨</p>
+<button class="secondary" onclick="showPage(1)">Replay our little surprise</button>
+</section>
+
+<section id="page12" class="hidden">
+<div class="art">🌷🤍</div><h1>Take your time</h1>
+<p>There's no rush, Cutu. I'll respect whatever you decide. Thank you for hearing me out. 💗</p>
+<button class="secondary" onclick="showPage(1)">Back to the beginning</button>
+</section>
+
+<section id="page13" class="hidden">
+<div class="art">🤍🌼</div><h1>Thank you for being honest</h1>
+<p>That's okay. I respect your feelings and wish you happiness. Thank you for reading my little proposal. 🌷</p>
+<button class="secondary" onclick="showPage(1)">Back to the beginning</button>
+</section>
+
+<div class="small">Made with a little courage and lots of pink 💗</div>
+</main>
+<script>
+function showPage(n){
+ document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
+ document.getElementById('page'+n).classList.remove('hidden');
+ const progress={1:0,2:20,3:40,4:60,5:80,6:100,7:100,8:100,9:100,10:100,11:100,12:100,13:100};
+ document.getElementById('bar').style.width=progress[n]+'%';
+}
+function answer(page,value){
+ document.getElementById('feedback'+page).textContent='Cute choice! 💗';
+}
+const hearts=document.getElementById('hearts');
+for(let i=0;i<18;i++){
+ const h=document.createElement('span');h.className='heart';h.textContent=['♡','💗','💕','✿'][i%4];
+ h.style.left=(Math.random()*100)+'%';h.style.animationDelay=(Math.random()*8)+'s';h.style.animationDuration=(7+Math.random()*6)+'s';hearts.appendChild(h);
+}
+</script>
+</body>
+</html>
